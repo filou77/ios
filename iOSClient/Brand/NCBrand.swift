@@ -31,7 +31,7 @@ import UIKit
         return instance
     }()
     
-    @objc public let configuration_bundleId:            String = "it.twsweb.Nextcloud"
+    @objc public let configuration_bundleId:            String = "fr.medicalcloud.box"
     @objc public let configuration_serverUrl:           String = "serverUrl"
     @objc public let configuration_username:            String = "username"
     @objc public let configuration_password:            String = "password"
@@ -45,14 +45,14 @@ import UIKit
         return instance
     }()
     
-    @objc public var brand:                             String = "Nextcloud"
-    @objc public var mailMe:                            String = "ios@nextcloud.com"
-    @objc public var textCopyrightNextcloudiOS:         String = "Nextcloud Coherence for iOS %@ © 2020"
-    @objc public var textCopyrightNextcloudServer:      String = "Nextcloud Server %@"
-    @objc public var loginBaseUrl:                      String = "https://cloud.nextcloud.com"
+    @objc public var brand:                             String = "Medical Cloud"
+    @objc public var mailMe:                            String = "contact@medicalcloud.fr"
+    @objc public var textCopyrightNextcloudiOS:         String = "Medical Cloud pour iOS %@ © 2020"
+    @objc public var textCopyrightNextcloudServer:      String = "MedicalCloud Server %@"
+    @objc public var loginBaseUrl:                      String = "https://box.medicalcloud.fr"
     @objc public var pushNotificationServerProxy:       String = "https://push-notifications.nextcloud.com"
-    @objc public var linkLoginHost:                     String = "https://nextcloud.com/install"
-    @objc public var linkloginPreferredProviders:       String = "https://nextcloud.com/signup";
+    @objc public var linkLoginHost:                     String = "https://www.medicalcloud.fr"
+    @objc public var linkloginPreferredProviders:       String = "https://www.medicalcloud.fr";
     @objc public var webLoginAutenticationProtocol:     String = "nc://"                                            // example "abc://"
     // Personalized
     @objc public var webCloseViewProtocolPersonalized:  String = ""                                                 // example "abc://change/plan"      Don't touch me !!
@@ -62,10 +62,10 @@ import UIKit
     @objc public var folderDefaultAutoUpload:           String = "Photos"
     
     // Capabilities Group
-    @objc public var capabilitiesGroups:                String = "group.it.twsweb.Crypto-Cloud"
+    @objc public var capabilitiesGroups:                String = "group.fr.medicalcloud.box"
     
     // User Agent
-    @objc public var userAgent:                         String = "Nextcloud-iOS"                                    // Don't touch me !!
+    @objc public var userAgent:                         String = "MedicalCloud-iOS"                                    // Don't touch me !!
     
     // Options
     @objc public var use_login_web_personalized:        Bool = false                                                // Don't touch me !!
@@ -77,11 +77,11 @@ import UIKit
     @objc public var use_configuration:                 Bool = false                                                // Don't touch me !!
     @objc public var use_loginflowv2:                   Bool = false                                                // Don't touch me !!
 
-    @objc public var disable_intro:                     Bool = false
-    @objc public var disable_request_login_url:         Bool = false
-    @objc public var disable_multiaccount:              Bool = false
+    @objc public var disable_intro:                     Bool = true
+    @objc public var disable_request_login_url:         Bool = true
+    @objc public var disable_multiaccount:              Bool = true
     @objc public var disable_manage_account:            Bool = false
-    @objc public var disable_more_external_site:        Bool = false
+    @objc public var disable_more_external_site:        Bool = true
     @objc public var disable_openin_file:               Bool = false                                                // Don't touch me !!
     @objc public var disable_crash_service:             Bool = true
     
@@ -103,7 +103,7 @@ class NCBrandColor: NSObject {
     }()
 
     // Color
-    @objc public let customer:              UIColor = UIColor(red: 0.0/255.0, green: 130.0/255.0, blue: 201.0/255.0, alpha: 1.0)    // BLU NC : #0082c9
+    @objc public let customer:              UIColor = UIColor(red: 41.0/255.0, green: 171.0/255.0, blue: 226.0/255.0, alpha: 1.0)    // BLU MC : #29ABE2
     @objc public var customerText:          UIColor = .white
     
     @objc public var brand:                 UIColor                                                                                 // don't touch me

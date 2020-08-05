@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Nextcloud</string>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -55,7 +55,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>it.twsweb.Nextcloud</string>
+			<string>fr.medicalcloud.box</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>nextcloud</string>
@@ -65,7 +65,7 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
-	<true/>
+	<false/>
 	<key>ITSEncryptionExportComplianceCode</key>
 	<string>3b2bb0b1-fa12-43cb-a78f-0f7e1afd33df</string>
 	<key>LSApplicationQueriesSchemes</key>
