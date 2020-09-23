@@ -26,7 +26,7 @@ for file in $(ls  *.lproj/Localizable.strings); do
     # In fact only the file in en.lproj is in UTF-8, all the other are in UCS-2LE (which is a strict subset of UTF-16LE)
     
     # Search for the encoding of the file
-    encoding=$(file --mime "$file" | grep -o "charset=[[:alnum:]-]*" | sed 's/charset=//' )
+    encoding=$(file --mime "$file" | grep --only-matching "charset=[[:alnum:]-]*" | sed 's/charset=//' )
     
     # Asume the original file is in UTF-8
     utf8File="$file"
