@@ -28,43 +28,49 @@ for file in $(ls  *.lproj/Localizable.strings); do
     # Search for the encoding of the file
     encoding=$(file --mime "$file" | grep --only-matching "charset=[[:alnum:]-]*" | sed 's/charset=//' )
     
-    # Asume the original file is in UTF-8
-    utf8File="$file"
-    
-    # If not, create a new file in UTF-8
-    if [ "$encoding" != "utf-8" ]; then
-        utf8File="$file.utf8"
-    
-        # First convert the file in UTF8
-        iconv --from-code="$encoding" --to-code=UTF-8 "$file" > "$utf8File" 
+    # We need an file with a sure UTF-8 encoding
+    utf8File="$file.utf8"
+
+    # If needed, convert to UTF-8
+    if [ "$encoding" != "utf-8" ]
+    then
+        iconv --from-code="$encoding" --to-code=UTF-8 "$file" > "$utf8File.0"
+    else
+        cp "$file" "$utf8File.0"
     fi
     
     ##################
     # Then adjust the file content
     # Here goes the real logic of that scritp, the rest is just plumbing ...
+    # Also to not rely on the not very portable --in-place option of sed,
+    # use temp files (that could also be usedull for debugging)
     #
-    
+
     # For the lack of a better URL point to our default website
-    sed --in-place 's/https:\/\/nextcloud.com\/migration/https:\/\/www.medicalcloud.fr/g' "$utf8File" 
+    cat "$utf8File.0" | sed 's/https:\/\/nextcloud.com\/migration/https:\/\/www.medicalcloud.fr/g' > "$utf8File.1"
     
     # All the user facing occurence of the Nextcloud word use that capitalization
     # Do not use case-insensitive match to not change the string keys that may contains the word "nextcloud" (in lower case)
-    sed --in-place 's/Nextcloud/Medical Cloud/g' "$utf8File" 
+    cat "$utf8File.1" | sed 's/Nextcloud/Medical Cloud/g' > "$utf8File.2"
     
+    cp "$utf8File.2" "$utf8File.last"
+
     #
     ##################
     
-    # If not UTF-8
+    # If required, convert it back to the original encoding
     if [ "$encoding" != "utf-8" ]; then
-        #Convert it back to the original encoding
-        iconv --from-code=UTF-8 --to-code="$encoding" "$utf8File" > "$file" 
-        
-        # Cleanup the temp UTF-8 file
-        rm "$utf8File" 
+        iconv --from-code=UTF-8 --to-code="$encoding" "$utf8File.last" > "$file"
+    else
+        cat "$utf8File.last" > "$file"
     fi
     
+    # Cleanup the temp UTF-8 files
+    rm "$utf8File".*
+
     echo " done."
 done
 
 # Restore PWD
 cd $oldPWD
+
